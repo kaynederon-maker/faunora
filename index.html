@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faunora — Pet Nutrition &amp; Kitchen</title>
+<meta name="description" content="Diet consultations with professional pet nutritionists, and meals cooked in Faunora's own kitchen to match.">
+<link rel="icon" href="assets/logo/faunora-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hand-drawn illustration sprite. Two pencil filters give the doubled, graphite-like line of the logo. -->
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="pencil" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="w"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" seed="7" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.35" result="m"/>
+      <feComposite in="d" in2="m" operator="in"/>
+    </filter>
+    <filter id="pencil2" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11" result="w"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="4" xChannelSelector="G" yChannelSelector="R"/>
+    </filter>
+  </defs>
+
+  <!-- Team animals -->
+  <symbol id="a-cat" viewBox="0 0 200 200">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="100" cy="104" r="88" stroke-width="1.4"/>
+      <path d="M64 150c-8 18-10 32-8 42M136 150c8 18 10 32 8 42"/>
+      <path d="M50 110c0-35 22-52 50-52s50 17 50 52-22 48-50 48-50-13-50-48z" fill="#C9D4D4" fill-opacity=".6"/>
+      <path d="M58 90l4-48 26 20M142 90l-4-48-26 20"/>
+      <path d="M66 78l2-24 14 10zM134 78l-2-24-14 10z" fill="#E5C4B5" fill-opacity=".8" stroke="none"/>
+      <path d="M74 104q8-6 16 0M110 104q8-6 16 0"/>
+      <path d="M96 118h8l-4 5z" fill="#6E9696"/>
+      <path d="M100 123q0 7-8 8M100 123q0 7 8 8"/>
+      <path d="M58 118l22 3M58 127l22-2M142 118l-22 3M142 127l-22-2" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <symbol id="a-dog" viewBox="0 0 200 200">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="100" cy="104" r="88" stroke-width="1.4"/>
+      <path d="M62 100c0-30 18-44 38-44s38 14 38 44-14 50-38 50-38-20-38-50z" fill="#F4F1E6" fill-opacity=".9"/>
+      <path d="M68 78c-18-6-30 12-26 40 2 12 12 14 20 4" fill="#C9D4D4" fill-opacity=".75"/>
+      <path d="M132 78c18-6 30 12 26 40-2 12-12 14-20 4" fill="#C9D4D4" fill-opacity=".75"/>
+      <circle cx="86" cy="98" r="3" fill="currentColor"/><circle cx="114" cy="98" r="3" fill="currentColor"/>
+      <ellipse cx="100" cy="124" rx="18" ry="13"/>
+      <path d="M93 116q7-4 14 0-3 6-7 6t-7-6z" fill="#6E9696"/>
+      <path d="M100 122v6M92 130q8 5 16 0"/>
+      <path d="M72 148q28 12 56 0"/>
+      <circle cx="100" cy="160" r="5" fill="#CDBB74" fill-opacity=".8"/>
+    </g>
+  </symbol>
+
+    <!-- Catering process icons -->
+  <symbol id="c-farm" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="78" cy="22" r="8" fill="#CDBB74" fill-opacity=".6"/>
+      <path d="M50 78V46"/>
+      <path d="M50 58c-14 0-22-8-22-20 14 0 22 8 22 20z" fill="#A9B79A" fill-opacity=".6"/>
+      <path d="M50 50c0-14 8-22 22-22 0 14-8 22-22 22z" fill="#A9B79A" fill-opacity=".6"/>
+      <path d="M14 78h72M22 86h56" />
+    </g>
+  </symbol>
+  <symbol id="c-check" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M28 18h44v68H28z" fill="#E7DCC0" fill-opacity=".7"/>
+      <path d="M42 13h16v9H42z" fill="#C9D4D4"/>
+      <path d="M36 40l5 5 9-10M36 60l5 5 9-10M56 42h8M56 62h8"/>
+    </g>
+  </symbol>
+  <symbol id="c-pot" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 36c-4-6 4-10 0-16M52 34c-4-6 4-10 0-16M64 36c-4-6 4-10 0-16" stroke-width="1.8"/>
+      <path d="M24 50h52v22q0 12-12 12H36q-12 0-12-12z" fill="#C9D4D4" fill-opacity=".6"/>
+      <path d="M18 50h64M14 58h10M76 58h10M44 44h12"/>
+    </g>
+  </symbol>
+  <symbol id="c-scale" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 64c4-16 32-16 36 0z" fill="#A9B79A" fill-opacity=".6"/>
+      <path d="M26 64h48"/>
+      <path d="M18 72h64l-6 14H24z" fill="#CDBB74" fill-opacity=".5"/>
+      <path d="M42 77h16"/>
+    </g>
+  </symbol>
+  <symbol id="c-chill" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 18h32l4 66H30z" fill="#C9D4D4" fill-opacity=".6"/>
+      <path d="M34 28h32"/>
+      <path d="M50 42v26M39 48l22 14M61 48L39 62" stroke-width="2"/>
+    </g>
+  </symbol>
+  <symbol id="c-deliver" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 40h30v24H14z" fill="#CDBB74" fill-opacity=".55"/>
+      <circle cx="26" cy="76" r="8"/><circle cx="76" cy="76" r="8"/>
+      <path d="M26 68V64h26l8-16h10M64 48l-4-12h-8M60 48l16 28"/>
+    </g>
+  </symbol>
+
+</svg>
+
+<audio id="bgm" src="assets/faunora-score.mp3" loop preload="auto"></audio>
+
+<header class="nav" id="top">
+  <a class="brand" href="#hero" aria-label="Faunora home">
+    <img src="assets/logo/faunora-mark-ai.png" alt="" width="40" height="41">
+    <span>Faunora</span>
+  </a>
+  <nav class="links" id="links" aria-label="Main">
+    <a href="#consult">Consult</a>
+    <a href="#catering">Catering</a>
+    <a href="#shop">Shop</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#about">About</a>
+    <a href="#history">History</a>
+    <a href="#team">Team</a>
+  </nav>
+  <div class="tools">
+    <button class="icon-btn bag-btn" id="bagBtn" aria-label="Open shopping bag">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="count" id="bagCount">0</span>
+    </button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+    <button class="icon-btn sound-btn is-off" id="soundBtn" aria-label="Play background music" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="spk" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/>
+        <path class="w w1" d="M15.5 9.5a3.5 3.5 0 0 1 0 5"/>
+        <path class="w w2" d="M18 7a7 7 0 0 1 0 10"/>
+        <path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="hero-art">
+      <img src="assets/logo/faunora-mark-ai.png" alt="Faunora logo: a dog and a puppy curled around a food bowl" width="400" height="405">
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow">Pet nutrition, cooked in-house</p>
+      <h1>Nourish what<br><em>you love.</em></h1>
+      <p class="lede">Talk to a professional pet nutritionist, get a diet plan built for your dog or cat, and let our own kitchen cook it, portion it and bring it to your door.</p>
+      <div class="cta">
+        <a class="btn" href="#consult">Book a consultation</a>
+        <a class="btn ghost" href="#shop">Visit the shop</a>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#flow" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <section class="flow" id="flow">
+    <ol>
+      <li class="reveal"><span class="num">i.</span><h3>Consult</h3><p>A 30-minute video session with a certified pet nutritionist.</p></li>
+      <li class="reveal" style="--d:.1s"><span class="num">ii.</span><h3>Plan</h3><p>A written diet plan: calories, portions, allergens to avoid.</p></li>
+      <li class="reveal" style="--d:.2s"><span class="num">iii.</span><h3>Cook</h3><p>Our kitchen prepares meals to that plan, portioned per feeding.</p></li>
+      <li class="reveal" style="--d:.3s"><span class="num">iv.</span><h3>Deliver</h3><p>Chilled, sealed and delivered weekly across Jabodetabek.</p></li>
+    </ol>
+  </section>
+
+  <section class="consult" id="consult">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Diet consultation</p>
+      <h2>Meet our <em>nutritionists</em></h2>
+      <p>Every plan is written by a licensed veterinarian or certified animal nutritionist. No chatbots, no guesswork.</p>
+    </header>
+    <div class="experts">
+      <article class="expert reveal">
+        <img class="portrait" src="assets/img/expert-bima.webp" alt="Portrait of drh. Bima Adiwangsa" width="480" height="617" loading="lazy">
+        <h3>drh. Bima Adiwangsa</h3>
+        <p class="role">Feline diets &amp; food allergies</p>
+        <p>Eight years untangling itchy skin and sensitive stomachs, one elimination diet at a time.</p>
+        <button class="link-btn" data-expert="drh. Bima Adiwangsa">Book with Bima →</button>
+      </article>
+      <article class="expert reveal" style="--d:.12s">
+        <img class="portrait" src="assets/img/expert-laras.webp" alt="Portrait of drh. Laras Pertiwi" width="480" height="617" loading="lazy">
+        <h3>drh. Laras Pertiwi, M.Sc</h3>
+        <p class="role">Clinical pet nutrition</p>
+        <p>Builds recovery and kidney-friendly plans with your vet, and checks in every two weeks.</p>
+        <button class="link-btn" data-expert="drh. Laras Pertiwi, M.Sc">Book with Laras →</button>
+      </article>
+      <article class="expert reveal" style="--d:.24s">
+        <img class="portrait" src="assets/img/expert-nadia.webp" alt="Portrait of Nadia Halim" width="480" height="617" loading="lazy">
+        <h3>Nadia Halim, PgDip</h3>
+        <p class="role">Canine weight management</p>
+        <p>Helped more than 300 dogs lose weight without losing their enthusiasm for dinner.</p>
+        <button class="link-btn" data-expert="Nadia Halim, PgDip">Book with Nadia →</button>
+      </article>
+    </div>
+
+    <div class="booking reveal">
+      <div class="plans">
+        <div class="plan"><h3>Single session</h3><p class="price">Rp 149.000</p><p>30-minute video call and a written diet plan.</p></div>
+        <div class="plan featured"><h3>Monthly care</h3><p class="price">Rp 399.000</p><p>Initial session, two follow-ups and 10% off every meal plan.</p></div>
+      </div>
+      <form id="bookForm" class="form">
+        <h3>Request a session</h3>
+        <label>Pet's name<input name="pet" required autocomplete="off" placeholder="e.g. Mochi"></label>
+        <div class="row">
+          <label>Species<select name="species" required><option value="">Choose</option><option>Dog</option><option>Cat</option></select></label>
+          <label>Preferred date<input type="date" name="date" required></label>
+        </div>
+        <label>Nutritionist<select name="expert" id="expertSel"><option>First available</option><option>drh. Bima Adiwangsa</option><option>drh. Laras Pertiwi, M.Sc</option><option>Nadia Halim, PgDip</option></select></label>
+        <label>Main concern<select name="concern"><option>Weight management</option><option>Food allergy / sensitive stomach</option><option>Senior pet</option><option>Recovery after illness</option><option>Just want a healthier diet</option></select></label>
+        <button class="btn" type="submit">Send request</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="catering" id="catering">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Catering</p>
+      <h2>Homemade, <em>from farm to bowl</em></h2>
+      <p>Every meal plan is cooked fresh for your pet. Here is what happens between a farmer's field and your pet's bowl.</p>
+    </header>
+
+    <div class="promise">
+      <article class="reveal">
+        <img class="photo" src="assets/img/farm.webp" alt="A farmer holding a crate of freshly harvested vegetables" width="900" height="616" loading="lazy">
+        <h3>Fresh from local farmers</h3>
+        <p>We buy directly from farmers and fishermen around Jakarta: vegetables from Lembang, free-range chicken from Bogor, and the morning catch from Muara Angke. No middlemen and no long-haul frozen imports. Ingredients reach our kitchen within a day of harvest, and we pay our growers fairly for it.</p>
+      </article>
+      <article class="reveal" style="--d:.12s">
+        <img class="photo" src="assets/img/kitchen.webp" alt="A cook portioning freshly cooked pet food in a small kitchen" width="900" height="616" loading="lazy">
+        <h3>Homemade with care, in our own kitchen</h3>
+        <p>Every meal is cooked in small batches by our own cooks in our own kitchen. It isn't outsourced or made in a factory, and it contains no preservatives. We slow-cook and gently steam, the way you would at home, then portion each meal to the calories your nutritionist prescribed.</p>
+      </article>
+    </div>
+
+    <div class="process-wrap">
+      <ol class="process" id="process">
+        <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-farm" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 1 · 05:00</span><h3>Source</h3><p>We collect vegetables, meat and fish directly from partner farmers at dawn.</p></li>
+        <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-check" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 1 · 08:00</span><h3>Inspect</h3><p>Each delivery is checked, weighed and logged, then stored cold.</p></li>
+        <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-pot" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 1 · 10:00</span><h3>Cook</h3><p>Our cooks prepare small batches from nutritionist-approved recipes.</p></li>
+        <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-scale" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 1 · 14:00</span><h3>Portion</h3><p>Weighed to your pet's calorie target and labelled with their name.</p></li>
+        <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-chill" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 1 · 16:00</span><h3>Seal &amp; chill</h3><p>Vacuum-sealed and blast-chilled to 4 °C to lock in freshness.</p></li>
+        <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-deliver" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 2 · 07:00</span><h3>Deliver</h3><p>Packed in insulated boxes and at your door in your chosen morning window.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <header class="sec-head reveal">
+      <p class="eyebrow">The Faunora kitchen &amp; shop</p>
+      <h2>Made by us, <em>sold by us</em></h2>
+      <p>One kitchen, one shop, no third-party sellers. Every meal is cooked and packed in-house, so we know exactly what goes into your pet's bowl.</p>
+    </header>
+    <div class="tabs reveal" role="tablist" aria-label="Product categories">
+      <button role="tab" aria-selected="true" data-cat="all">All</button>
+      <button role="tab" aria-selected="false" data-cat="meals">Meals</button>
+      <button role="tab" aria-selected="false" data-cat="snacks">Snacks</button>
+      <button role="tab" aria-selected="false" data-cat="toys">Toys</button>
+      <button role="tab" aria-selected="false" data-cat="fashion">Fashion</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Kind words</p>
+      <h2>What our <em>clients</em> say</h2>
+    </header>
+    <div class="review-grid">
+      <figure class="review reveal">
+        <span class="praise">Consistency</span>
+        <blockquote>"Every week the portions weigh exactly the same and the food smells just like the first box. That consistency is why Mochi's weight finally settled."</blockquote>
+        <figcaption><svg class="sketch" data-sketch="a-dog" viewBox="0 0 200 200" aria-hidden="true"></svg><span><strong>Rina S.</strong> with Mochi, Shih Tzu</span></figcaption>
+      </figure>
+      <figure class="review reveal" style="--d:.1s">
+        <span class="praise">Food quality</span>
+        <blockquote>"You can actually see the carrots and the chicken. Luna used to skip meals. Now she waits by the door on delivery day."</blockquote>
+        <figcaption><svg class="sketch" data-sketch="a-cat" viewBox="0 0 200 200" aria-hidden="true"></svg><span><strong>Dimas P.</strong> with Luna, Persian</span></figcaption>
+      </figure>
+      <figure class="review reveal" style="--d:.2s">
+        <span class="praise">Customer service</span>
+        <blockquote>"I messaged at 10 pm because Bruno had an upset stomach. The nutritionist replied that night and adjusted his plan by morning. Truly caring people."</blockquote>
+        <figcaption><svg class="sketch" data-sketch="a-dog" viewBox="0 0 200 200" aria-hidden="true"></svg><span><strong>Clarissa W.</strong> with Bruno, Golden Retriever</span></figcaption>
+      </figure>
+      <figure class="review reveal">
+        <span class="praise">Fair pricing</span>
+        <blockquote>"I compared it with premium kibble plus supplements. Faunora costs about the same, but it's fresh and a real nutritionist planned it. Easy decision."</blockquote>
+        <figcaption><svg class="sketch" data-sketch="a-cat" viewBox="0 0 200 200" aria-hidden="true"></svg><span><strong>Kevin T.</strong> with Oyen, domestic cat</span></figcaption>
+      </figure>
+      <figure class="review reveal" style="--d:.1s">
+        <span class="praise">Consistency</span>
+        <blockquote>"Eight weeks, sixteen deliveries, and the box has arrived in the morning window every single time, still cold. I've stopped worrying about it."</blockquote>
+        <figcaption><svg class="sketch" data-sketch="a-dog" viewBox="0 0 200 200" aria-hidden="true"></svg><span><strong>Ayu L.</strong> with Kiko &amp; Momo, Pomeranians</span></figcaption>
+      </figure>
+      <figure class="review reveal" style="--d:.2s">
+        <span class="praise">Value &amp; service</span>
+        <blockquote>"The Monthly Care plan pays for itself with the meal discount, and the follow-up calls feel personal, not scripted."</blockquote>
+        <figcaption><svg class="sketch" data-sketch="a-cat" viewBox="0 0 200 200" aria-hidden="true"></svg><span><strong>Sarah H.</strong> with Kuro &amp; Tofu, rescue cats</span></figcaption>
+      </figure>
+    </div>
+    <p class="note reveal">Illustrative reviews for this prototype.</p>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-inner">
+      <header class="sec-head reveal">
+        <p class="eyebrow">About us</p>
+        <h2>Fauna, with a little <em>aurora</em></h2>
+      </header>
+      <p class="reveal big">Faunora started from a simple observation: most pet owners we spoke to were not sure their pet's food was right for them, and nobody was in a position to tell them.</p>
+      <p class="reveal">So we kept it focused. First, a real consultation with a professional pet nutritionist. Second, food cooked in our own kitchen to match the plan, plus the treats, toys and clothes we would happily use on our own animals. We are not a marketplace. We do not resell a thousand brands. If it has the Faunora name on it, we made it, packed it, or picked it ourselves.</p>
+    </div>
+  </section>
+
+  <section class="history" id="history">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Our history</p>
+      <h2>Founded in <em>five minutes.</em> Honestly.</h2>
+      <p>Most founding stories involve a garage, a dream and a decade. Ours involves a deadline.</p>
+    </header>
+    <ol class="timeline">
+      <li class="reveal"><time>00:00</time><p>A Venture Creation assignment notices us before we notice it. The deadline is uncomfortably close. Four students look at each other.</p></li>
+      <li class="reveal"><time>00:47</time><p>Someone observes that pets eat food. This is accepted as a market insight.</p></li>
+      <li class="reveal"><time>02:10</time><p>A name is chosen: <em>Peybo</em>. Nobody can explain it. Nobody tries.</p></li>
+      <li class="reveal"><time>03:30</time><p>The feature list grows to include hotels, grooming, a marketplace and possibly the moon.</p></li>
+      <li class="reveal"><time>04:59</time><p>Submitted. Exactly five minutes, start to finish. We would like to say it was strategy. It was the deadline.</p></li>
+      <li class="reveal"><time>Later</time><p>Our professor gently asked what we were actually good at. The answer was nutrition and food. We dropped the moon, kept the bowl, and renamed ourselves <strong>Faunora</strong>.</p></li>
+    </ol>
+    <p class="reveal footnote">We still work fast. We just think first now.</p>
+  </section>
+
+  <section class="team" id="team">
+    <header class="sec-head reveal">
+      <p class="eyebrow">The team</p>
+      <h2>Four students, <em>four animals</em></h2>
+    </header>
+    <div class="members">
+      <figure class="member reveal">
+        <img class="portrait" src="assets/img/team-pig.webp" alt="Pencil sketch of a pig" width="560" height="560" loading="lazy">
+        <figcaption><span class="role">CEO</span><strong>Siegfried Vesakha Setiawan</strong><small>2802405882</small></figcaption>
+      </figure>
+      <figure class="member reveal" style="--d:.1s">
+        <img class="portrait" src="assets/img/team-dog.webp" alt="Pencil sketch of a dog" width="560" height="560" loading="lazy">
+        <figcaption><span class="role">COO</span><strong>Kayne Deron Kusnadi</strong><small>2802405150</small></figcaption>
+      </figure>
+      <figure class="member reveal" style="--d:.2s">
+        <img class="portrait" src="assets/img/team-cat.webp" alt="Pencil sketch of a cat" width="560" height="560" loading="lazy">
+        <figcaption><span class="role">CFO</span><strong>Angelino Delvin</strong><small>2802526271</small></figcaption>
+      </figure>
+      <figure class="member reveal" style="--d:.3s">
+        <img class="portrait" src="assets/img/team-deer.webp" alt="Pencil sketch of a deer" width="560" height="560" loading="lazy">
+        <figcaption><span class="role">CMO</span><strong>Andi Siti Maryam Shaskirana</strong><small>2802462500</small></figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <img src="assets/logo/faunora-mark-ai.png" alt="" width="56" height="57">
+  <p class="wordmark">Faunora</p>
+  <p>A Venture Creation project · BINUS University · 2026</p>
+  <p class="credit">Music: original score composed for Faunora with Google Gemini. Photography, film and characters are AI-generated for a student project. <a href="video/Faunora_Ad_90s.mp4">Watch our 90-second film</a>.</p>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Shopping bag" aria-hidden="true">
+  <header><h2>Your bag</h2><button class="icon-btn" id="closeBag" aria-label="Close bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <ul class="bag-list" id="bagList"></ul>
+  <p class="empty" id="bagEmpty">Your bag is empty. Something in the shop is probably looking at you.</p>
+  <footer><div class="total"><span>Subtotal</span><strong id="bagTotal">Rp 0</strong></div><button class="btn wide" id="checkout">Checkout</button></footer>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

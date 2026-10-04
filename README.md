@@ -6,7 +6,7 @@
 
 A Venture Creation project at BINUS University, 2026.
 
-- **Website:** LIVE_SITE_URL
+- **Website:** https://kaynederon-maker.github.io/faunora/
 - **Film (90 s):** [video/Faunora_Ad_90s.mp4](video/Faunora_Ad_90s.mp4)
 
 ## What's here

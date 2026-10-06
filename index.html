@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -397,6 +397,12 @@
   <footer><div class="total"><span>Subtotal</span><strong id="bagTotal">Rp 0</strong></div><button class="btn wide" id="checkout">Checkout</button></footer>
 </aside>
 
+<!-- Shown on every page section once a session is booked, so the nutritionist is always one tap away. -->
+<button class="chat-fab" id="chatFab" type="button" hidden>
+  <img data-care-photo src="" alt="" width="40" height="40">
+  <span>Chat with <b data-care-first></b></span>
+</button>
+
 <aside class="chat" id="chat" role="dialog" aria-labelledby="chatTitle" hidden>
   <header class="chat-head">
     <img data-care-photo src="" alt="" width="44" height="44">
@@ -448,7 +454,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js"></script>
-<script src="care.js"></script>
+<script src="script.js?v=3"></script>
+<script src="care.js?v=3"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@ const MAX_MESSAGE = 500;
 const TYPING_MS = [900, 1800];
 const RING_MS = 3200;
 
-const care = $('#care'), chat = $('#chat'), call = $('#call');
+const care = $('#care'), chat = $('#chat'), call = $('#call'), fab = $('#chatFab');
 const chatLog = $('#chatLog'), chatForm = $('#chatForm'), chatInput = chatForm.message;
 let booking = store.get('faunora-booking', null);
 if (booking && !Object.hasOwn(EXPERTS, booking.expert)) booking = null;   // ignore stale or tampered storage
@@ -46,8 +46,10 @@ function fillExpert(root, name) {
 function showCare() {
   $('#bookForm').hidden = !!booking;
   care.hidden = !booking;
+  fab.hidden = !booking || !chat.hidden;
   if (!booking) return;
   fillExpert(care, booking.expert);
+  fillExpert(fab, booking.expert);
   $('#careMeta').textContent = `${booking.pet} · ${booking.species} · ${booking.concern} · ${formatDate(booking.date)}`;
 }
 
@@ -110,12 +112,21 @@ function addBubble(msg) {
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
+let chatOpener = null;
 function setChat(open) {
   if (open && !booking) return;
   chat.hidden = !open;
+  fab.hidden = open || !booking;
   requestAnimationFrame(() => chat.classList.toggle('open', open));
-  if (open) { ensureGreeting(); fillExpert(chat, booking.expert); renderChat(); chatInput.focus(); }
-  else $('#openChat').focus();
+  if (open) {
+    chatOpener = document.activeElement;
+    ensureGreeting(); fillExpert(chat, booking.expert); renderChat(); chatInput.focus();
+    return;
+  }
+  // Return focus to whatever opened the chat; the floating button is hidden while the chat is open.
+  const lost = !chatOpener || chatOpener === fab || chatOpener === document.body || !chatOpener.isConnected;
+  const back = lost ? (booking ? fab : null) : chatOpener;
+  if (back) back.focus({ preventScroll: true });
 }
 
 // Simulated nutritionist replies, matched on a few keywords from the owner's message.
@@ -163,6 +174,7 @@ chatForm.addEventListener('submit', e => {
 });
 $$('[data-quick]', chat).forEach(btn => btn.addEventListener('click', () => send(btn.textContent)));
 $('#openChat').addEventListener('click', () => setChat(true));
+fab.addEventListener('click', () => setChat(true));
 $('#closeChat').addEventListener('click', () => setChat(false));
 
 /* ---------- Mock call (no audio, no backend) ---------- */

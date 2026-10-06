@@ -7,14 +7,17 @@
 A Venture Creation project at BINUS University, 2026.
 
 - **Website:** https://kaynederon-maker.github.io/faunora/
-- **Film (90 s):** [video/Faunora_Ad_90s.mp4](video/Faunora_Ad_90s.mp4)
+- **Film (3 min), "Long Walks":** [video/Faunora_Ad_3min.mp4](video/Faunora_Ad_3min.mp4)
+- **Film (90 s), "From the land to the bowl":** [video/Faunora_Ad_90s.mp4](video/Faunora_Ad_90s.mp4)
 
 ## What's here
 
 | Path | Contents |
 |---|---|
 | `index.html`, `style.css`, `script.js` | The Faunora website: plain HTML/CSS/JavaScript, responsive, no build step |
+| `care.js` | Post-booking care: assigned nutritionist card, text chat and mock call screen |
 | `assets/` | Images, logo and the site's background score |
+| `video/Faunora_Ad_3min.mp4` | The 3-minute brand film "Long Walks", narrated by a grandfather voice (1080p) |
 | `video/Faunora_Ad_90s.mp4` | The 90-second brand film "From the land to the bowl" (1080p) |
 | [`docs/Robust Design Factors_Faunora.docx`](docs/Robust%20Design%20Factors_Faunora.docx) | GSLC: Robust Design Factor Identification (P-diagram, control and noise factors, L9 experiment, FMEA) |
 | [`docs/Prototype Testing Report and Feedback Grid_Faunora.docx`](docs/Prototype%20Testing%20Report%20and%20Feedback%20Grid_Faunora.docx) | GSLC: Customer discovery prototype testing report and Feedback Grid |
@@ -24,6 +27,7 @@ To run the website locally, open `index.html` in a browser.
 ## The website
 
 - Diet consultation with nutritionist profiles and a booking form (prototype, no backend)
+- After booking: your assigned nutritionist, a text chat with simulated replies, and a mock call screen (no audio or backend)
 - Catering: farm-to-bowl timeline that fills as you scroll
 - In-house shop for meals, snacks, toys and pet fashion, with an animated add-to-bag
 - Reviews, About, a "founded in five minutes" History, and the team

@@ -389,3 +389,93 @@ section { padding: clamp(5rem, 11vw, 9rem) clamp(16px, 6vw, 96px); position: rel
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; filter: none; }
 }
+
+/* ---------- Post-consultation care: nutritionist card, chat, mock call ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.care { animation: cardIn .7s var(--ease) both; }
+.care[hidden], .form[hidden] { display: none; }
+.care-person { display: flex; align-items: center; gap: 1.1rem; margin: .4rem 0 .2rem; }
+.care-person img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: center 22%; box-shadow: 0 12px 28px -18px rgba(63, 59, 52, .6); }
+.care-person strong { display: block; font: 400 1.45rem/1.2 var(--serif); color: #3F3B34; }
+.care-role { display: block; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sage-deep); }
+.online { display: inline-flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--ink-soft); }
+.online i { width: 8px; height: 8px; border-radius: 50%; background: #5FA06A; animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(95, 160, 106, .6); } 70%, 100% { box-shadow: 0 0 0 7px rgba(95, 160, 106, 0); } }
+.care-meta { margin: .3rem 0 0; font-size: .9rem; color: var(--ink-soft); }
+.care-note { margin: 0; font-size: .95rem; }
+.care-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .3rem; }
+.care-actions .btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.care .link-btn { justify-self: start; }
+
+.chat {
+  position: fixed; z-index: 55; right: 1.5rem; bottom: 1.5rem; width: min(400px, calc(100% - 32px)); height: min(620px, calc(100svh - 3rem));
+  display: flex; flex-direction: column; background: var(--paper); border-radius: 26px; overflow: hidden;
+  box-shadow: 0 30px 70px -30px rgba(63, 59, 52, .55), 0 0 0 1px rgba(185, 179, 163, .5);
+  opacity: 0; transform: translateY(24px) scale(.97); transform-origin: bottom right; transition: opacity .45s var(--ease), transform .45s var(--ease);
+}
+.chat[hidden] { display: none; }
+.chat.open { opacity: 1; transform: none; }
+.chat-head { display: flex; align-items: center; gap: .7rem; padding: .9rem 1rem; background: rgba(169, 183, 154, .22); }
+.chat-head img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center 22%; }
+.chat-who { flex: 1; min-width: 0; display: grid; }
+.chat-who .online { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.chat-who .online i { display: inline-block; margin-right: .4rem; vertical-align: middle; }
+.chat-who strong { font: 400 1.15rem/1.2 var(--serif); color: #3F3B34; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chat-log { list-style: none; margin: 0; padding: 1rem; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: .6rem; }
+.msg { max-width: 82%; animation: cardIn .4s var(--ease) both; }
+.msg p { margin: 0; padding: .65rem .9rem; border-radius: 18px; font-size: .93rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg time { display: block; font-size: .7rem; color: var(--ink-soft); margin: .2rem .5rem 0; }
+.msg.them { align-self: flex-start; }
+.msg.them p { background: #fff; border-bottom-left-radius: 6px; box-shadow: 0 1px 0 rgba(63, 59, 52, .06); }
+.msg.me { align-self: flex-end; text-align: right; }
+.msg.me p { background: var(--sage-deep); color: #fff; border-bottom-right-radius: 6px; text-align: left; }
+.typing { display: flex; align-items: center; gap: .25rem; margin: 0 1rem .4rem; font-size: .75rem; color: var(--ink-soft); }
+.typing[hidden] { display: none; }
+.typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-soft); animation: blink 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: .2s; }
+.typing span:nth-child(3) { animation-delay: .4s; }
+.typing em { margin-left: .4rem; font-style: normal; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.quick { display: flex; gap: .4rem; padding: 0 1rem .6rem; overflow-x: auto; scrollbar-width: none; }
+.quick::-webkit-scrollbar { display: none; }
+.quick button { flex: none; border: 1px solid var(--line); background: transparent; border-radius: 99px; padding: .35rem .8rem; font: 400 .8rem var(--sans); color: var(--ink); cursor: pointer; transition: background .3s, border-color .3s; }
+.quick button:hover { background: rgba(169, 183, 154, .2); border-color: var(--sage-deep); }
+.chat-form { display: flex; gap: .4rem; padding: .6rem .7rem .3rem 1rem; border-top: 1px solid rgba(185, 179, 163, .5); }
+.chat-form input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 99px; padding: .65rem 1rem; font: 300 .95rem var(--sans); background: #fff; color: var(--ink); }
+.chat-form input:focus { outline: none; border-color: var(--sage-deep); box-shadow: 0 0 0 3px rgba(169, 183, 154, .3); }
+.icon-btn.send { background: var(--ink); color: var(--paper); }
+.icon-btn.send:hover { background: var(--sage-deep); }
+.chat-note { margin: 0 0 .7rem; text-align: center; font-size: .7rem; color: var(--ink-soft); }
+
+.call { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; overflow: hidden; background: #24221E; color: #F1EDE0; opacity: 0; transition: opacity .4s var(--ease); }
+.call[hidden] { display: none; }
+.call.open { opacity: 1; }
+.call-bg { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(38px) brightness(.45) saturate(.8); }
+.call-body { position: relative; text-align: center; padding: 2rem 16px; display: grid; justify-items: center; gap: .3rem; }
+.call-avatar { position: relative; margin-bottom: 1rem; }
+.call-avatar img { display: block; width: 148px; height: 148px; border-radius: 50%; object-fit: cover; object-position: center 22%; border: 2px solid rgba(241, 237, 224, .7); }
+.call-avatar::before, .call-avatar::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(241, 237, 224, .5); animation: ring 2s var(--ease) infinite; }
+.call-avatar::after { animation-delay: 1s; }
+.call.connected .call-avatar::before, .call.connected .call-avatar::after { animation: none; opacity: 0; }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
+.call h2 { color: #F1EDE0; font-size: clamp(1.8rem, 5vw, 2.6rem); }
+.call-role { margin: 0; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(241, 237, 224, .7); }
+.call-status { margin: .6rem 0 2.2rem; font-size: 1.05rem; font-variant-numeric: tabular-nums; color: rgba(241, 237, 224, .9); }
+.call-controls { display: flex; gap: clamp(1.2rem, 6vw, 2.4rem); align-items: flex-start; }
+.call-btn { display: grid; justify-items: center; gap: .5rem; border: 0; background: none; color: inherit; font: 400 .78rem var(--sans); cursor: pointer; }
+.call-btn svg { width: 64px; height: 64px; padding: 19px; border-radius: 50%; background: rgba(241, 237, 224, .14); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: background .3s var(--ease), transform .2s var(--ease); }
+.call-btn:hover svg { background: rgba(241, 237, 224, .24); }
+.call-btn:active svg { transform: scale(.92); }
+.call-btn[aria-pressed="true"] svg { background: #F1EDE0; color: #24221E; }
+.call-btn.end svg { background: #C8553D; fill: #fff; stroke: none; }
+.call-btn.end:hover svg { background: #B0452F; }
+.call.ended .call-status { color: #F3B4A6; }
+.call-note { margin-top: 2rem; font-size: .72rem; color: rgba(241, 237, 224, .55); }
+
+@media (max-width: 760px) {
+  .chat { inset: 0; right: 0; bottom: 0; width: 100%; height: 100%; border-radius: 0; }
+  .care-actions .btn { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .online i, .call-avatar::before, .call-avatar::after { animation: none; }
+}

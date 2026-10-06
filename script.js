@@ -117,7 +117,11 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const pet = form.pet.value.trim();
   if (!pet) return form.pet.focus();
-  toast(`Thank you. ${pet}'s request is in; a nutritionist will confirm within 24 hours.`);
+  // care.js takes over from here: assigned nutritionist card, chat and mock call.
+  dispatchEvent(new CustomEvent('faunora:booked', { detail: {
+    pet: pet.slice(0, 40), species: form.species.value, date: form.date.value,
+    expert: form.expert.value, concern: form.concern.value,
+  } }));
   form.reset();
 });
 

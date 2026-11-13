@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Faunora — Pet Nutrition &amp; Kitchen</title>
-<meta name="description" content="Diet consultations with professional pet nutritionists, and meals cooked in Faunora's own kitchen to match.">
+<meta name="description" content="Step inside the Faunora house: diet consultations with professional pet nutritionists, and meals cooked in our own kitchen to match.">
+<meta name="theme-color" content="#F1EDE0">
 <link rel="icon" href="assets/logo/faunora-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=1794562635">
+<link rel="stylesheet" href="stage.css?v=1794562635">
 </head>
-<body>
+<body data-stop="home">
 
 <!-- Hand-drawn illustration sprite. Two pencil filters give the doubled, graphite-like line of the logo. -->
 <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -109,27 +111,33 @@
 
 <audio id="bgm" src="assets/faunora-score.mp3" loop preload="auto"></audio>
 
-<header class="nav" id="top">
-  <a class="brand" href="#hero" aria-label="Faunora home">
-    <img src="assets/logo/faunora-mark-ai.png" alt="" width="40" height="41">
+<!-- The 3D house (js/world.js). Everything else sits on top of it. -->
+<canvas id="world" aria-hidden="true"></canvas>
+
+<div class="loader" role="status">
+  <img src="assets/logo/mark-160.png" alt="" width="84" height="84">
+  <p>Opening the house…</p>
+</div>
+
+<header class="top">
+  <a class="brand" href="#home" data-go="home" aria-label="Faunora home">
+    <img src="assets/logo/mark-160.png" alt="" width="42" height="42">
     <span>Faunora</span>
   </a>
-  <nav class="links" id="links" aria-label="Main">
-    <a href="#consult">Consult</a>
-    <a href="#catering">Catering</a>
-    <a href="#shop">Shop</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#about">About</a>
-    <a href="#history">History</a>
-    <a href="#team">Team</a>
+  <nav class="navbox bracket" id="links" aria-label="Main">
+    <a href="#home" data-go="home">Home</a>
+    <a href="#consult" data-go="consult">Consult</a>
+    <a href="#kitchen" data-go="kitchen">Catering</a>
+    <a href="#shop" data-go="shop">Shop</a>
+    <a href="#reviews" data-go="reviews">Reviews</a>
+    <a href="#story" data-go="story">Story</a>
+    <a href="#team" data-go="team">Team</a>
+    <button class="nav-cta" type="button" data-open="consult">Book a session</button>
   </nav>
   <div class="tools">
     <button class="icon-btn bag-btn" id="bagBtn" aria-label="Open shopping bag">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
       <span class="count" id="bagCount">0</span>
-    </button>
-    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="links">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
     </button>
     <button class="icon-btn sound-btn is-off" id="soundBtn" aria-label="Play background music" aria-pressed="false">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -139,41 +147,110 @@
         <path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/>
       </svg>
     </button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
   </div>
 </header>
 
-<main>
-  <section class="hero" id="hero">
-    <div class="hero-art">
-      <img src="assets/logo/faunora-mark-ai.png" alt="Faunora logo: a dog and a puppy curled around a food bowl" width="400" height="405">
+<main class="stage">
+  <section class="stop hero" id="home">
+    <p class="eyebrow">Pet nutrition, cooked in-house</p>
+    <h1 aria-label="Nourish what you love."><span id="typed" aria-hidden="true"></span><i class="caret" aria-hidden="true"></i></h1>
+    <p class="lede">Real advice and fresh food for <span class="swap" id="swap">dogs</span></p>
+    <div class="cta">
+      <span class="bracket"><button class="btn" type="button" data-go="consult">Step inside</button></span>
     </div>
-    <div class="hero-copy">
-      <p class="eyebrow">Pet nutrition, cooked in-house</p>
-      <h1>Nourish what<br><em>you love.</em></h1>
-      <p class="lede">Talk to a professional pet nutritionist, get a diet plan built for your dog or cat, and let our own kitchen cook it, portion it and bring it to your door.</p>
-      <div class="cta">
-        <a class="btn" href="#consult">Book a consultation</a>
-        <a class="btn ghost" href="#shop">Visit the shop</a>
-      </div>
-    </div>
-    <a class="scroll-cue" href="#flow" aria-label="Scroll down"><span></span></a>
   </section>
-
-  <section class="flow" id="flow">
-    <ol>
-      <li class="reveal"><span class="num">i.</span><h3>Consult</h3><p>A 30-minute video session with a certified pet nutritionist.</p></li>
-      <li class="reveal" style="--d:.1s"><span class="num">ii.</span><h3>Plan</h3><p>A written diet plan: calories, portions, allergens to avoid.</p></li>
-      <li class="reveal" style="--d:.2s"><span class="num">iii.</span><h3>Cook</h3><p>Our kitchen prepares meals to that plan, portioned per feeding.</p></li>
-      <li class="reveal" style="--d:.3s"><span class="num">iv.</span><h3>Deliver</h3><p>Chilled, sealed and delivered weekly across Jabodetabek.</p></li>
-    </ol>
-  </section>
-
-  <section class="consult" id="consult">
-    <header class="sec-head reveal">
+  <section class="stop room-card" id="consult" inert>
+    <div class="card-in bracket">
       <p class="eyebrow">Diet consultation</p>
       <h2>Meet our <em>nutritionists</em></h2>
-      <p>Every plan is written by a licensed veterinarian or certified animal nutritionist. No chatbots, no guesswork.</p>
-    </header>
+      <p class="desc">Every plan is written by a licensed veterinarian or certified animal nutritionist. No guesswork and no generic feeding charts.</p>
+      <ul class="points"><li>A 30-minute video session</li><li>A written diet plan for your pet</li><li>Message your nutritionist any time</li></ul>
+      <button class="explore" type="button" data-open="consult"><span>Book a consultation</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+  <section class="stop room-card" id="kitchen" inert>
+    <div class="card-in bracket">
+      <p class="eyebrow">Catering</p>
+      <h2>Homemade, <em>from farm to bowl</em></h2>
+      <p class="desc">Every meal plan is cooked fresh in our own kitchen, then portioned to the calories your nutritionist prescribed.</p>
+      <ul class="points"><li>Bought directly from local farmers</li><li>Small batches, no preservatives</li><li>Chilled and at your door by morning</li></ul>
+      <button class="explore" type="button" data-open="kitchen"><span>See how it is cooked</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+  <section class="stop room-card" id="shop" inert>
+    <div class="card-in bracket">
+      <p class="eyebrow">The Faunora kitchen &amp; shop</p>
+      <h2>Made by us, <em>sold by us</em></h2>
+      <p class="desc">One kitchen, one shop, no third-party sellers. If it has the Faunora name on it, we made it, packed it or picked it ourselves.</p>
+      <ul class="points"><li>Fresh meals for dogs and cats</li><li>Snacks with nothing to hide</li><li>Toys and clothes we use on our own pets</li></ul>
+      <button class="explore" type="button" data-open="shop"><span>Browse the shop</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+  <section class="stop room-card" id="reviews" inert>
+    <div class="card-in bracket">
+      <p class="eyebrow">Kind words</p>
+      <h2>What our <em>clients</em> say</h2>
+      <p class="desc">Owners keep telling us the same things: the food is the same every week, you can see what is in it, and somebody always answers.</p>
+      <ul class="points"><li>Consistent portions, every box</li><li>Food you can recognise</li><li>Real people who reply</li></ul>
+      <button class="explore" type="button" data-open="reviews"><span>Read the reviews</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+  <section class="stop room-card" id="story" inert>
+    <div class="card-in bracket">
+      <p class="eyebrow">About us</p>
+      <h2>Fauna, with a little <em>aurora</em></h2>
+      <p class="desc">Faunora started from a simple observation: most pet owners were not sure their pet's food was right, and nobody was in a position to tell them.</p>
+      <ul class="points"><li>Founded in five minutes. Honestly.</li><li>A real consultation comes first</li><li>Not a marketplace</li></ul>
+      <button class="explore" type="button" data-open="story"><span>Read our story</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+  <section class="stop room-card" id="team" inert>
+    <div class="card-in bracket">
+      <p class="eyebrow">The team</p>
+      <h2>Four students, <em>four animals</em></h2>
+      <p class="desc">A pig, a dog, a cat and a deer walk onto a rooftop. They turn out to be our CEO, COO, CFO and CMO.</p>
+      <ul class="points"><li>BINUS University</li><li>Venture Creation, 2026</li><li>Jabodetabek</li></ul>
+      <button class="explore" type="button" data-open="team"><span>Meet the team</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+</main>
+
+<div class="hotspots" id="hotspots"></div>
+
+<div class="scroll-hint" aria-hidden="true">
+  <span class="mouse"><i></i></span>
+  <p>Scroll or tap a dot<br>to explore the house</p>
+</div>
+
+<div class="dock">
+  <div class="dock-nav bracket">
+    <button class="icon-btn" id="overviewBtn" type="button" aria-label="See the whole house" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h5v5h-5z"/></svg>
+    </button>
+    <button class="icon-btn" id="prevBtn" type="button" aria-label="Previous room"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></button>
+    <span class="stop-count" id="stopCount">01 / 07</span>
+    <button class="icon-btn" id="nextBtn" type="button" aria-label="Next room"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+  </div>
+  <button class="dock-chat bracket" id="chatBtn" type="button" aria-label="Chat with the Faunora care desk">
+    <img data-care-photo src="assets/logo/mark-160.png" alt="" width="44" height="44">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>
+  </button>
+</div>
+
+<div class="veil" id="veil" hidden></div>
+<aside class="sheet " id="sheet-consult" role="dialog" aria-modal="true" aria-labelledby="sheet-consult-title" hidden>
+  <header class="sheet-head">
+    <button class="back" type="button" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back to the house</span></button>
+  </header>
+  <div class="sheet-body">
+    <div class="sheet-title">
+      <p class="eyebrow">Diet consultation</p>
+      <h2 id="sheet-consult-title">Meet our <em>nutritionists</em></h2>
+      <p class="sheet-intro">Every plan is written by a licensed veterinarian or certified animal nutritionist. Pick one, or let us match you by your pet's main concern.</p>
+    </div>
     <div class="experts">
       <article class="expert reveal">
         <img class="portrait" src="assets/img/expert-bima.webp" alt="Portrait of drh. Bima Adiwangsa" width="480" height="617" loading="lazy">
@@ -238,15 +315,18 @@
         <button class="link-btn" id="newBooking" type="button">Book another session</button>
       </div>
     </div>
-  </section>
-
-  <section class="catering" id="catering">
-    <header class="sec-head reveal">
+  </div>
+</aside>
+<aside class="sheet " id="sheet-kitchen" role="dialog" aria-modal="true" aria-labelledby="sheet-kitchen-title" hidden>
+  <header class="sheet-head">
+    <button class="back" type="button" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back to the house</span></button>
+  </header>
+  <div class="sheet-body">
+    <div class="sheet-title">
       <p class="eyebrow">Catering</p>
-      <h2>Homemade, <em>from farm to bowl</em></h2>
-      <p>Every meal plan is cooked fresh for your pet. Here is what happens between a farmer's field and your pet's bowl.</p>
-    </header>
-
+      <h2 id="sheet-kitchen-title">Homemade, <em>from farm to bowl</em></h2>
+      <p class="sheet-intro">Every meal plan is cooked fresh for your pet. Here is what happens between a farmer's field and your pet's bowl.</p>
+    </div>
     <div class="promise">
       <article class="reveal">
         <img class="photo" src="assets/img/farm.webp" alt="A farmer holding a crate of freshly harvested vegetables" width="900" height="616" loading="lazy">
@@ -270,29 +350,32 @@
         <li class="step"><div class="ico"><svg class="sketch" data-sketch="c-deliver" viewBox="0 0 100 100" aria-hidden="true"></svg></div><span class="when">Day 2 · 07:00</span><h3>Deliver</h3><p>Packed in insulated boxes and at your door in your chosen morning window.</p></li>
       </ol>
     </div>
-  </section>
-
-  <section class="shop" id="shop">
-    <header class="sec-head reveal">
+  </div>
+</aside>
+<aside class="sheet wide" id="sheet-shop" role="dialog" aria-modal="true" aria-labelledby="sheet-shop-title" hidden>
+  <header class="sheet-head">
+    <button class="back" type="button" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back to the house</span></button>
+  </header>
+  <div class="sheet-body">
+    <div class="sheet-title">
       <p class="eyebrow">The Faunora kitchen &amp; shop</p>
-      <h2>Made by us, <em>sold by us</em></h2>
-      <p>One kitchen, one shop, no third-party sellers. Every meal is cooked and packed in-house, so we know exactly what goes into your pet's bowl.</p>
-    </header>
-    <div class="tabs reveal" role="tablist" aria-label="Product categories">
-      <button role="tab" aria-selected="true" data-cat="all">All</button>
-      <button role="tab" aria-selected="false" data-cat="meals">Meals</button>
-      <button role="tab" aria-selected="false" data-cat="snacks">Snacks</button>
-      <button role="tab" aria-selected="false" data-cat="toys">Toys</button>
-      <button role="tab" aria-selected="false" data-cat="fashion">Fashion</button>
+      <h2 id="sheet-shop-title">Made by us, <em>sold by us</em></h2>
+      <p class="sheet-intro">One kitchen, one shop, no third-party sellers. Every meal is cooked and packed in-house, so we know exactly what goes into your pet's bowl.</p>
     </div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Product categories"></div>
     <div class="grid" id="grid"></div>
-  </section>
-
-  <section class="reviews" id="reviews">
-    <header class="sec-head reveal">
+  </div>
+</aside>
+<aside class="sheet " id="sheet-reviews" role="dialog" aria-modal="true" aria-labelledby="sheet-reviews-title" hidden>
+  <header class="sheet-head">
+    <button class="back" type="button" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back to the house</span></button>
+  </header>
+  <div class="sheet-body">
+    <div class="sheet-title">
       <p class="eyebrow">Kind words</p>
-      <h2>What our <em>clients</em> say</h2>
-    </header>
+      <h2 id="sheet-reviews-title">What our <em>clients</em> say</h2>
+      <p class="sheet-intro">Six owners, in their own words.</p>
+    </div>
     <div class="review-grid">
       <figure class="review reveal">
         <span class="praise">Consistency</span>
@@ -326,21 +409,23 @@
       </figure>
     </div>
     <p class="note reveal">Illustrative reviews for this prototype.</p>
-  </section>
-
-  <section class="about" id="about">
+  </div>
+</aside>
+<aside class="sheet " id="sheet-story" role="dialog" aria-modal="true" aria-labelledby="sheet-story-title" hidden>
+  <header class="sheet-head">
+    <button class="back" type="button" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back to the house</span></button>
+  </header>
+  <div class="sheet-body">
+    <div class="sheet-title">
+      <p class="eyebrow">About us</p>
+      <h2 id="sheet-story-title">Fauna, with a little <em>aurora</em></h2>
+      <p class="sheet-intro">Who we are, and the slightly embarrassing story of how we started.</p>
+    </div>
     <div class="about-inner">
-      <header class="sec-head reveal">
-        <p class="eyebrow">About us</p>
-        <h2>Fauna, with a little <em>aurora</em></h2>
-      </header>
       <p class="reveal big">Faunora started from a simple observation: most pet owners we spoke to were not sure their pet's food was right for them, and nobody was in a position to tell them.</p>
       <p class="reveal">So we kept it focused. First, a real consultation with a professional pet nutritionist. Second, food cooked in our own kitchen to match the plan, plus the treats, toys and clothes we would happily use on our own animals. We are not a marketplace. We do not resell a thousand brands. If it has the Faunora name on it, we made it, packed it, or picked it ourselves.</p>
     </div>
-  </section>
-
-  <section class="history" id="history">
-    <header class="sec-head reveal">
+    <header class="sub-head reveal">
       <p class="eyebrow">Our history</p>
       <h2>Founded in <em>five minutes.</em> Honestly.</h2>
       <p>Most founding stories involve a garage, a dream and a decade. Ours involves a deadline.</p>
@@ -354,13 +439,24 @@
       <li class="reveal"><time>Later</time><p>Our professor gently asked what we were actually good at. The answer was nutrition and food. We dropped the moon, kept the bowl, and renamed ourselves <strong>Faunora</strong>.</p></li>
     </ol>
     <p class="reveal footnote">We still work fast. We just think first now.</p>
-  </section>
-
-  <section class="team" id="team">
-    <header class="sec-head reveal">
+    <footer class="foot">
+      <img src="assets/logo/mark-160.png" alt="" width="56" height="56">
+      <p class="wordmark">Faunora</p>
+      <p>A Venture Creation project · BINUS University · 2026</p>
+      <p class="credit">Music: original score composed for Faunora with Google Gemini. Photography, film, 3D models and characters are AI-generated for a student project. Watch our films: <a href="video/Faunora_Ad_3min.mp4">Long Walks (3 min)</a> · <a href="video/Faunora_Ad_90s.mp4">From the land to the bowl (90 s)</a>.</p>
+    </footer>
+  </div>
+</aside>
+<aside class="sheet " id="sheet-team" role="dialog" aria-modal="true" aria-labelledby="sheet-team-title" hidden>
+  <header class="sheet-head">
+    <button class="back" type="button" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back to the house</span></button>
+  </header>
+  <div class="sheet-body">
+    <div class="sheet-title">
       <p class="eyebrow">The team</p>
-      <h2>Four students, <em>four animals</em></h2>
-    </header>
+      <h2 id="sheet-team-title">Four students, <em>four animals</em></h2>
+      <p class="sheet-intro">Each of us picked an animal. Nobody argued about the pig.</p>
+    </div>
     <div class="members">
       <figure class="member reveal">
         <img class="portrait" src="assets/img/team-pig.webp" alt="Pencil sketch of a pig" width="560" height="560" loading="lazy">
@@ -379,15 +475,8 @@
         <figcaption><span class="role">CMO</span><strong>Andi Siti Maryam Shaskirana</strong><small>2802462500</small></figcaption>
       </figure>
     </div>
-  </section>
-</main>
-
-<footer class="foot">
-  <img src="assets/logo/faunora-mark-ai.png" alt="" width="56" height="57">
-  <p class="wordmark">Faunora</p>
-  <p>A Venture Creation project · BINUS University · 2026</p>
-  <p class="credit">Music: original score composed for Faunora with Google Gemini. Photography, film and characters are AI-generated for a student project. Watch our films: <a href="video/Faunora_Ad_3min.mp4">Long Walks (3 min)</a> · <a href="video/Faunora_Ad_90s.mp4">From the land to the bowl (90 s)</a>.</p>
-</footer>
+  </div>
+</aside>
 
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" aria-label="Shopping bag" aria-hidden="true">
@@ -397,37 +486,27 @@
   <footer><div class="total"><span>Subtotal</span><strong id="bagTotal">Rp 0</strong></div><button class="btn wide" id="checkout">Checkout</button></footer>
 </aside>
 
-<!-- Shown on every page section once a session is booked, so the nutritionist is always one tap away. -->
-<button class="chat-fab" id="chatFab" type="button" hidden>
-  <img data-care-photo src="" alt="" width="40" height="40">
-  <span>Chat with <b data-care-first></b></span>
-</button>
-
 <aside class="chat" id="chat" role="dialog" aria-labelledby="chatTitle" hidden>
   <header class="chat-head">
     <img data-care-photo src="" alt="" width="44" height="44">
     <div class="chat-who">
       <strong id="chatTitle" data-care-name></strong>
-      <span class="online"><i aria-hidden="true"></i>Online · usually replies in minutes</span>
+      <span class="online"><i aria-hidden="true"></i><span id="chatStatus">Online</span></span>
     </div>
-    <button class="icon-btn" id="chatCall" type="button" aria-label="Call your nutritionist">
+    <button class="icon-btn" id="chatCall" type="button" aria-label="Call your nutritionist" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5l3 3.2-1.8 2.6a11 11 0 0 0 7 7l2.6-1.8 3.2 3-1.6 2.9C11.5 20.3 3.7 12.5 3.6 5.1z"/></svg>
     </button>
     <button class="icon-btn" id="closeChat" type="button" aria-label="Close chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </header>
   <ol class="chat-log" id="chatLog" aria-live="polite"></ol>
   <p class="typing" id="typing" role="status" hidden><span></span><span></span><span></span><em>typing</em></p>
-  <div class="quick" aria-label="Suggested questions">
-    <button type="button" data-quick>How much should I feed?</button>
-    <button type="button" data-quick>Which treats are okay?</button>
-    <button type="button" data-quick>My pet has itchy skin</button>
-  </div>
+  <div class="quick" id="quick" aria-label="Suggested questions"></div>
   <form class="chat-form" id="chatForm">
     <label class="sr-only" for="chatMessage">Message</label>
-    <input id="chatMessage" name="message" autocomplete="off" maxlength="500" placeholder="Write a message…">
+    <input id="chatMessage" name="message" autocomplete="off" maxlength="500" placeholder="Ask about food, portions, treats…">
     <button class="icon-btn send" type="submit" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button>
   </form>
-  <p class="chat-note">Prototype: replies are simulated.</p>
+  <p class="chat-note">Prototype: replies are simulated general guidance, not a diagnosis.</p>
 </aside>
 
 <div class="call" id="call" role="dialog" aria-modal="true" aria-labelledby="callName" hidden>
@@ -454,7 +533,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="script.js?v=3"></script>
-<script src="care.js?v=3"></script>
+<noscript><p class="noscript">Faunora needs JavaScript to open the house.</p></noscript>
+<script src="app.bundle.js?v=1794562635" defer></script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- Dev only: every character from assets/models/cast.glb in a grid, animated. ?only=dog,cat filters by name. -->
+<html><head><meta charset="utf-8"><title>Faunora cast check</title>
+<style>html,body{margin:0;height:100%;background:linear-gradient(#F6F3E9,#E8E2D1)}canvas{width:100vw;height:100vh;display:block}</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head><body><canvas id="c"></canvas>
+<script type="module">
+import * as THREE from 'three';
+import { loadCast, spawn, enliven } from './js/scene/cast.js';
+const q = new URLSearchParams(location.search);
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(2); renderer.setSize(innerWidth, innerHeight, false);
+renderer.toneMapping = THREE.NeutralToneMapping; renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const scene = new THREE.Scene();
+scene.add(new THREE.HemisphereLight(0xFFFBF2, 0xD8CFBB, 1.5));
+const sun = new THREE.DirectionalLight(0xFFF3DF, 2.1); sun.position.set(4, 9, 12); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -8, right: 8, top: 6, bottom: -6 }); sun.shadow.normalBias = 0.02;
+scene.add(sun);
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.14 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+const lib = await loadCast('assets/models/cast.glb');
+const only = (q.get('only') || '').split(',').filter(Boolean);
+const names = [...lib.keys()].filter(n => !only.length || only.some(o => n.includes(o)));
+const cols = Number(q.get('cols') || Math.ceil(Math.sqrt(names.length * 1.8))), gap = 1.15, tickers = [];
+names.forEach((name, i) => {
+  const parts = spawn(name);
+  const rows = Math.ceil(names.length / cols);
+  parts.root.position.set((i % cols - (cols - 1) / 2) * gap, 0, (Math.floor(i / cols) - (rows - 1) / 2) * 1.5);
+  parts.root.rotation.y = Number(q.get('ry') || 0.5);
+  scene.add(parts.root);
+  const kind = name.split('_')[0];
+  enliven(parts, { kind: ['dog', 'cat', 'pig', 'deer', 'chicken'].includes(kind) ? kind : 'person', arms: name === 'cook' ? 'stir' : name === 'shopkeeper' ? 'wave' : 'type' }, tickers);
+});
+const h = Number(q.get('h') || 4.6), a = innerWidth / innerHeight;
+const cam = new THREE.OrthographicCamera(-h * a / 2, h * a / 2, h / 2, -h / 2, 0.1, 100);
+const az = Number(q.get('az') || 0.5), el = Number(q.get('el') || 0.35);
+cam.position.set(Math.sin(az) * Math.cos(el) * 30, Math.sin(el) * 30 + 0.55, Math.cos(az) * Math.cos(el) * 30); cam.lookAt(0, 0.55, 0);
+renderer.setAnimationLoop(ms => { tickers.forEach(f => f(ms / 1000)); renderer.render(scene, cam); });
+window.names = names;
+</script></body></html>
